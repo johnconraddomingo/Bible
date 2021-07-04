@@ -1,31 +1,25 @@
-  [
-        { 
-            "id": 1, 
-            "bookName": "Genesis", 
-            "chapters": 
-            [
-                {
-                    "id" : 1,
-                    "chapterNumber": 1,
-                    "verses":
-                        [
-                          {
-                            "id": 1,
-                            "verseNumber": 1,
-                            "text": "In the beginning God created the heavens and the earth.",
-                            "translation": 1,
-                            "title": "The History of Creation" 
-                          },
-                          {
-                            
-                            "id": 2,
-                            "verseNumber": 2,
-                            "text": "The earth was without form, and void; and darkness was on the face of the deep. And the Spirit of God was hovering over the face of the waters.",
-                            "translation": 1
-                          }
-                        ]
-                }
-            ] 
-        } 
-    ] 
- 
+[
+  {
+    "bookName": "Genesis",
+    "chapters": [
+      {
+
+        "chapterNumber": 1,
+        "verses": [
+          {
+            "verseNumber": 1,
+            "text": "In the beginning God created the heavens and the earth.",
+            "translation": 1,
+            "title": "The History of Creation"
+          },
+          {
+
+            "verseNumber": 2,
+            "text": "The earth was without form, and void; and darkness was on the face of the deep. And the Spirit of God was hovering over the face of the waters.",
+            "translation": 1
+          }
+        ]
+      }
+    ]
+  }
+]

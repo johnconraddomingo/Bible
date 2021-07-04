@@ -81,4 +81,5 @@ namespace Bible
 }
 
 
+// [DatabaseGenerated(DatabaseGeneratedOption.None)]
 // Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=BibleSource;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context AppDbContext -F 

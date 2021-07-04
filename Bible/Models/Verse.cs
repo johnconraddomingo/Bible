@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -11,9 +10,9 @@ namespace Bible.Models
         public Verse()
         {
             Footnotes = new HashSet<Footnote>();
+            Titles = new HashSet<Title>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public int? VerseNumber { get; set; }
         public string Text { get; set; }
@@ -23,5 +22,6 @@ namespace Bible.Models
         public virtual Chapter ChapterNavigation { get; set; }
         public virtual Translation TranslationNavigation { get; set; }
         public virtual ICollection<Footnote> Footnotes { get; set; }
+        public virtual ICollection<Title> Titles { get; set; }
     }
 }

@@ -15,17 +15,20 @@ namespace Bible.Models
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            Database.EnsureCreated(); 
         }
 
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<BookDescription> BookDescriptions { get; set; }
+        public virtual DbSet<BookShortcut> BookShortcuts { get; set; }
         public virtual DbSet<Chapter> Chapters { get; set; }
         public virtual DbSet<Footnote> Footnotes { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Translation> Translations { get; set; }
         public virtual DbSet<Verse> Verses { get; set; }
- 
+
+      
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -52,6 +55,18 @@ namespace Bible.Models
                     .HasConstraintName("FK_BookDescriptions_Translations");
             });
 
+            modelBuilder.Entity<BookShortcut>(entity =>
+            {
+                entity.Property(e => e.Shortcut)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.BookNavigation)
+                    .WithMany(p => p.BookShortcuts)
+                    .HasForeignKey(d => d.Book)
+                    .HasConstraintName("FK_BookShortcuts_Books");
+            });
+
             modelBuilder.Entity<Chapter>(entity =>
             {
                 entity.HasOne(d => d.BookNavigation)
@@ -76,6 +91,11 @@ namespace Bible.Models
                 entity.Property(e => e.Text)
                     .HasMaxLength(500)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.VerseNavigation)
+                    .WithMany(p => p.Titles)
+                    .HasForeignKey(d => d.Verse)
+                    .HasConstraintName("FK_Titles_Verses");
             });
 
             modelBuilder.Entity<Translation>(entity =>
