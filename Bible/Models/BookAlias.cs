@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace Bible.Models
 {
-    public partial class BookDescription
+    public partial class BookAlias
     {
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string Alias { get; set; }
         public int? Book { get; set; }
 
         public virtual Book BookNavigation { get; set; }

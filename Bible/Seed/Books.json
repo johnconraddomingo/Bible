@@ -1,6 +1,7 @@
 [
   {
     "bookName": "Genesis",
+    "translation" :  1,
     "chapters": [
       {
 
@@ -9,17 +10,18 @@
           {
             "verseNumber": 1,
             "text": "In the beginning God created the heavens and the earth.",
-            "translation": 1,
-            "title": "The History of Creation"
+            "titles": [{ "text": "The History of Creation" }]
           },
           {
 
             "verseNumber": 2,
             "text": "The earth was without form, and void; and darkness was on the face of the deep. And the Spirit of God was hovering over the face of the waters.",
-            "translation": 1
           }
         ]
       }
+    ],
+    "bookAliases": [
+      { "alias":  "genesis" }, {"alias": "gen"}
     ]
   }
 ]

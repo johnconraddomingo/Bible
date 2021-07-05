@@ -16,11 +16,9 @@ namespace Bible.Models
         public int Id { get; set; }
         public int? VerseNumber { get; set; }
         public string Text { get; set; }
-        public int? Translation { get; set; }
         public int? Chapter { get; set; }
 
         public virtual Chapter ChapterNavigation { get; set; }
-        public virtual Translation TranslationNavigation { get; set; }
         public virtual ICollection<Footnote> Footnotes { get; set; }
         public virtual ICollection<Title> Titles { get; set; }
     }

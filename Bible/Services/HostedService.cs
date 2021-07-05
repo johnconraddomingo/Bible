@@ -29,8 +29,8 @@ namespace Bible.Services
             var seederService = scope.ServiceProvider.GetRequiredService<ISeederService>();
 
             // Temporary Solution
-            var tContents = await File.ReadAllTextAsync(Path.Combine( _source, "translations.json"));
-            var bContents = await File.ReadAllTextAsync(Path.Combine(_source, "books.json"));
+            var tContents = await File.ReadAllTextAsync(Path.Combine( _source, "translations.json"), cancellationToken);
+            var bContents = await File.ReadAllTextAsync(Path.Combine(_source, "books.json"), cancellationToken);
 
             var translations = JsonConvert.DeserializeObject<IEnumerable<Translation>>(tContents);
             var books = JsonConvert.DeserializeObject<IEnumerable<Book>>(bContents);

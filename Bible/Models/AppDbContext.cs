@@ -15,19 +15,17 @@ namespace Bible.Models
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated(); 
+            Database.EnsureCreated();
         }
 
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<BookAlias> BookAliases { get; set; }
         public virtual DbSet<BookDescription> BookDescriptions { get; set; }
-        public virtual DbSet<BookShortcut> BookShortcuts { get; set; }
         public virtual DbSet<Chapter> Chapters { get; set; }
         public virtual DbSet<Footnote> Footnotes { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Translation> Translations { get; set; }
         public virtual DbSet<Verse> Verses { get; set; }
-
-      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +36,24 @@ namespace Bible.Models
                 entity.Property(e => e.BookName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.TranslationNavigation)
+                    .WithMany(p => p.Books)
+                    .HasForeignKey(d => d.Translation)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Books_Translations");
+            });
+
+            modelBuilder.Entity<BookAlias>(entity =>
+            {
+                entity.Property(e => e.Alias)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.BookNavigation)
+                    .WithMany(p => p.BookAliases)
+                    .HasForeignKey(d => d.Book)
+                    .HasConstraintName("FK_BookShortcuts_Books");
             });
 
             modelBuilder.Entity<BookDescription>(entity =>
@@ -48,23 +64,6 @@ namespace Bible.Models
                     .WithMany(p => p.BookDescriptions)
                     .HasForeignKey(d => d.Book)
                     .HasConstraintName("FK_BookDescriptions_Books");
-
-                entity.HasOne(d => d.TranslationNavigation)
-                    .WithMany(p => p.BookDescriptions)
-                    .HasForeignKey(d => d.Translation)
-                    .HasConstraintName("FK_BookDescriptions_Translations");
-            });
-
-            modelBuilder.Entity<BookShortcut>(entity =>
-            {
-                entity.Property(e => e.Shortcut)
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.BookNavigation)
-                    .WithMany(p => p.BookShortcuts)
-                    .HasForeignKey(d => d.Book)
-                    .HasConstraintName("FK_BookShortcuts_Books");
             });
 
             modelBuilder.Entity<Chapter>(entity =>
@@ -100,6 +99,8 @@ namespace Bible.Models
 
             modelBuilder.Entity<Translation>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.TranslationCode)
                     .HasMaxLength(5)
                     .IsUnicode(false);
@@ -117,11 +118,6 @@ namespace Bible.Models
                     .WithMany(p => p.Verses)
                     .HasForeignKey(d => d.Chapter)
                     .HasConstraintName("FK_Verses_Chapters");
-
-                entity.HasOne(d => d.TranslationNavigation)
-                    .WithMany(p => p.Verses)
-                    .HasForeignKey(d => d.Translation)
-                    .HasConstraintName("FK_Verses_Translations");
             });
 
             OnModelCreatingPartial(modelBuilder);
