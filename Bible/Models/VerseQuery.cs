@@ -21,6 +21,14 @@ namespace Bible.Models
 
         public VerseQuery(string query, string translation) {
 
+            TranslationCode = translation;
+            Parse(query);
+        }
+
+        private void Parse(string query)
+        {
+            // Adding the Parse method inside a model still falls under Single Responsibility
+
             // E.g.
             //
             // gen 1:1
@@ -29,8 +37,7 @@ namespace Bible.Models
             // gen 1:1-2
             // 1pet1:1
             // 1 pet 1 : 1
-            // 
-             
+            //             
         }
 
     }
