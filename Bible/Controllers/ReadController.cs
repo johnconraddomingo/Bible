@@ -1,4 +1,4 @@
-﻿using Bible.Models;
+﻿using Bible.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bible.Models;
 
 namespace Bible.Controllers
 {
@@ -23,11 +24,16 @@ namespace Bible.Controllers
         }
 
         [HttpGet]
-        public Book Get()
-        { 
+        public Book Get(string query, string translation)
+        {
+
+            var verseQuery = new VerseQuery(query, translation);
+
             var book = _context.Books.First(); 
             return book;
           
         }
+
+      
     }
 }

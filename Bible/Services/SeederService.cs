@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Bible.Models;
+using Bible.Entities;
 
 namespace Bible.Services
 {

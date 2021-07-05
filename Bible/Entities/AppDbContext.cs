@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Bible.Models
+namespace Bible.Entities
 {
     public partial class AppDbContext : DbContext
     {
@@ -27,7 +27,7 @@ namespace Bible.Models
         public virtual DbSet<Translation> Translations { get; set; }
         public virtual DbSet<Verse> Verses { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 

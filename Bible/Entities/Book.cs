@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Bible.Models
+namespace Bible.Entities
 {
     public partial class Book
     {

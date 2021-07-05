@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Bible.Models;
+using Bible.Entities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;

@@ -1,4 +1,4 @@
-using Bible.Models;
+using Bible.Entities;
 using Bible.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,9 +40,10 @@ namespace Bible
             });
 
 
-            // Seeder Services
+            // Services
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<ISeederService, SeederService>();
+            services.AddScoped<IQueryService, QueryService>();
 
             var source = Configuration.GetSection("Datasources").GetSection("Bible").Value;
 
@@ -82,4 +83,4 @@ namespace Bible
 
 
 // [DatabaseGenerated(DatabaseGeneratedOption.None)]
-// Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=BibleSource;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context AppDbContext -F 
+// Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=BibleSource;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Ent -Context AppDbContext -F 
